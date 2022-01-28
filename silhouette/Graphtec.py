@@ -169,10 +169,12 @@ QUERY_FIRMWARE_VERSION = b'FG'
 RESP_READY    = b'0'
 RESP_MOVING   = b'1'
 RESP_UNLOADED = b'2'
+RESP_FAIL     = b'-1'
 RESP_DECODING = {
   RESP_READY:    'ready',
   RESP_MOVING:   'moving',
   RESP_UNLOADED: 'unloaded'
+  RESP_FAIL:     'fail'
 }
 
 SILHOUETTE_CAMEO4_TOOL_EMPTY = 0
@@ -728,14 +730,14 @@ Alternatively, you can add yourself to group 'lp' and logout/login.""" % (self.h
     return None
 
   def status(self):
-    """Query the device status. This can return one of the three strings
-       'ready', 'moving', 'unloaded' or a raw (unknown) byte sequence."""
+    """Query the device status. This can return one of the four strings
+       'ready', 'moving', 'unloaded', 'fail' or a raw (unknown) byte sequence."""
 
     # Status request.
     self.send_escape(CMD_ENQ, is_query=True)
     resp = b"None\x03"
     try:
-      resp = self.read(timeout=5000)
+      resp = self.read(timeout=5000).strip()
     except usb.core.USBError as e:
       print("usb.core.USBError:", e, file=self.log)
       pass
@@ -1086,6 +1088,8 @@ Alternatively, you can add yourself to group 'lp' and logout/login.""" % (self.h
           self.send_command([
             tool.cutter_offset(0, 0.05),
             tool.cutter_offset(bladediameter, 0.05)])
+      elif self.product_id() == PRODUCT_ID_SILHOUETTE_PORTRAIT3:
+          self.send_command("FC0")
       else:
         if pen:
           self.send_command("FC0")
@@ -1377,11 +1381,16 @@ Alternatively, you can add yourself to group 'lp' and logout/login.""" % (self.h
       if regsearch:
         # automatic regmark test
         # add a search range of 10mm
-        self.send_command(self.automatic_regmark_test_mm_cmd(reglength, regwidth, regoriginy - 10, regoriginx - 10))
+        # On Portrait3, y, x are always 118, which is the size of the square
+        self.send_command(self.automatic_regmark_test_mm_cmd(reglength, regwidth, 5.9, 5.9))
       else:
         # manual regmark
         self.send_command(self.move_mm_cmd(self, regoriginy, regoriginx))
         self.send_command(self.manual_regmark_mm_cmd(reglength, regwidth))
+
+      ## SS sends another TB99
+      if self.product_id() == PRODUCT_ID_SILHOUETTE_PORTRAIT3:
+        self.send_command("TB99")
 
       #while True:
       #  s.write("\1b\05") #request status
@@ -1389,9 +1398,19 @@ Alternatively, you can add yourself to group 'lp' and logout/login.""" % (self.h
       #  if resp != "    1\x03":
       #    break;
 
-      resp = self.read(timeout=40000) ## Allow 20s for reply...
-      if resp != b"    0\x03":
-        raise ValueError("Couldn't find registration marks. %s" % str(resp))
+      if self.product_id() == PRODUCT_ID_SILHOUETTE_PORTRAIT3:
+        while True:
+          state = self.status(timeout=500)
+          if state != 'moving':
+            break
+          time.sleep(1)
+        if state == 'fail':
+          raise ValueError("Couldn't find registration marks. %s" % str(resp))
+        self.wait_for_ready(timeout=10, poll_interval=0.5)
+      else:
+        resp = self.read(timeout=40000) ## Allow 20s for reply...
+        if resp != b"    0\x03":
+          raise ValueError("Couldn't find registration marks. %s" % str(resp))
 
       ## Looks like if the reg marks work it gets 3 messages back (if it fails it times out because it only gets the first message)
       #resp = s.read(timeout=40000) ## Allow 20s for reply...
