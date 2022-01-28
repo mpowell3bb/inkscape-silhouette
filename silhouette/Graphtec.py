@@ -118,8 +118,9 @@ CAMEO_MATS = dict(
   no_mat=('0', False, False),
   cameo_12x12=('1', 12, 12),
   cameo_12x24=('2', 24, 12),
+  portrait_8x12=('3', False, False),
   cameo_plus_15x15=('8', 15, 15),
-  cameo_pro_24x24=('9', 24, 24)
+  cameo_pro_24x24=('9', 24, 24),
 )
 
 #  robocut/Plotter.h:53 ff
@@ -138,6 +139,7 @@ PRODUCT_ID_SILHOUETTE_CAMEO4 =  0x1137
 PRODUCT_ID_SILHOUETTE_CAMEO4PRO = 0x1139
 PRODUCT_ID_SILHOUETTE_PORTRAIT = 0x1123
 PRODUCT_ID_SILHOUETTE_PORTRAIT2 = 0x1132
+PRODUCT_ID_SILHOUETTE_PORTRAIT3 = 0x113a
 
 PRODUCT_LINE_CAMEO4 = [
   PRODUCT_ID_SILHOUETTE_CAMEO4,
@@ -145,7 +147,7 @@ PRODUCT_LINE_CAMEO4 = [
   PRODUCT_ID_SILHOUETTE_CAMEO4PRO
 ]
 
-PRODUCT_LINE_CAMEO3_ON = PRODUCT_LINE_CAMEO4 + [PRODUCT_ID_SILHOUETTE_CAMEO3]
+PRODUCT_LINE_CAMEO3_ON = PRODUCT_LINE_CAMEO4 + [PRODUCT_ID_SILHOUETTE_CAMEO3, PRODUCT_ID_SILHOUETTE_PORTRAIT3]
 
 # End Of Text - marks the end of a command
 CMD_ETX = b'\x03'
@@ -157,7 +159,7 @@ CMD_ESC = b'\x1b'
 CMD_EOT = b'\x04'
 # Enquiry - Returns device status
 CMD_ENQ = b'\x05'
-# Negative Acnoledge - Returns device tool setup
+# Negative Acnowledge - Returns device tool setup
 CMD_NAK = b'\x15'
 
 ### Query codes
@@ -188,6 +190,8 @@ DEVICE = [
    'width_mm':  206, 'length_mm': 3000, 'regmark': True },
  { 'vendor_id': VENDOR_ID_GRAPHTEC, 'product_id': PRODUCT_ID_SILHOUETTE_PORTRAIT2, 'name': 'Silhouette Portrait2',
    'width_mm':  203, 'length_mm': 3000, 'regmark': True },
+ { 'vendor_id': VENDOR_ID_GRAPHTEC, 'product_id': PRODUCT_ID_SILHOUETTE_PORTRAIT3, 'name': 'Silhouette Portrait3',
+   'width_mm':  216, 'length_mm': 3000, 'regmark': True },
  { 'vendor_id': VENDOR_ID_GRAPHTEC, 'product_id': PRODUCT_ID_SILHOUETTE_CAMEO, 'name': 'Silhouette Cameo',
    # margin_top_mm is just for safety when moving backwards with thin media
    # margin_left_mm is a physical limit, but is relative to width_mm!
@@ -328,6 +332,43 @@ class SilhouetteCameoTool:
     return [
       "FF%d,0,%d" % (start, self.toolholder),
       "FF%d,%d,%d" % (start, end, self.toolholder)]
+
+class SilhouettePortraitTool:
+  def __init__(self, toolholder=1):
+    pass
+
+  def select(self):
+    """ select tool command """
+    return None
+
+  def pressure(self, pressure):
+    """ set pressure command """
+    return "FX%d" % (pressure)
+
+  def speed(self, speed):
+    """ set speed command """
+    return "!%d" % (speed)
+
+  def depth(self, depth):
+    """ set depth command """
+    return "TF%d,1" % (depth)
+
+  def cutter_offset(self, xmm, ymm):
+    """ set cutter offset command using mm """
+    return "FC%d" % (_mm_2_SU(xmm))
+
+  def lift(self, lift):
+    """ set lift command """
+    if lift:
+      return "FE1,0" % self.toolholder
+    else:
+      return "FE0,0" % self.toolholder
+
+  def sharpen_corners(self, start, end):
+    return [
+      "FF%d,0,0" % (start),
+      "FF%d,%d,0" % (start, end)]
+
 
 class SilhouetteCameo:
   def __init__(self, log=sys.stderr, cmdfile=None, inc_queries=False,
@@ -703,7 +744,7 @@ Alternatively, you can add yourself to group 'lp' and logout/login.""" % (self.h
     return RESP_DECODING.get(bytes(resp[:-1]), bytes(resp[:-1]))
 
   def get_tool_setup(self):
-    """ gets the type of the tools installed in Cameo 4 """
+    """ gets the type of the tools installed in Cameo 4, Portrait 3 """
 
     if self.product_id() not in PRODUCT_LINE_CAMEO4:
       return 'none'
@@ -731,7 +772,7 @@ Alternatively, you can add yourself to group 'lp' and logout/login.""" % (self.h
       if (state == 'None'):
         raise NotImplementedError("Waiting for ready but no device exists.")
       if verbose: print(" %d/%d: status=%s\r" % (i, npolls, state), end='', file=sys.stderr)
-      if verbose == False:
+      if not verbose:
         if state == 'unloaded':
           print(" %d/%d: please load media ...\r" % (i, npolls, state), end='', file=sys.stderr)
         elif i > npolls/3:
@@ -802,6 +843,12 @@ Alternatively, you can add yourself to group 'lp' and logout/login.""" % (self.h
       if resp:
         # response '0,0'
         print("TC: '%s'" % resp, file=self.log)
+    # Silhouette Studio does not appear to issue this command when using a Portrait 3
+    if self.product_id() == PRODUCT_ID_SILHOUETTE_PORTRAIT3:
+      resp = self.send_receive_command("TI")
+      if resp:
+        # response '0,0'
+        print("TI: '%s'" % resp, file=self.log)
 
   def get_version(self):
     """Retrieve the firmware version string from the device."""
@@ -812,7 +859,7 @@ Alternatively, you can add yourself to group 'lp' and logout/login.""" % (self.h
     self.send_command(["\\%d,%d" % (top, left), "Z%d,%d" % (bottom, right)])
 
   def set_cutting_mat(self, cuttingmat, mediawidth, mediaheight):
-    """Setting Cutting mat only for Cameo 3 and 4
+    """Setting Cutting mat only for Cameo 3, 4 and Portrait 3
 
     Parameters
     ----------
@@ -835,6 +882,9 @@ Alternatively, you can add yourself to group 'lp' and logout/login.""" % (self.h
     #TB50,x: x = 1 landscape mode, x = 0 portrait mode
     self.send_command(["FN0", "TB50,0"])
 
+    if self.product_id() == PRODUCT_ID_SILHOUETTE_PORTRAIT3:
+      return
+
     if matparms[1]:
       # Note this does _not_ reproduce the \left,bot and Zright,top
       # commands emitted by Silhouette Studio (see ../Commands.md), although
@@ -846,7 +896,12 @@ Alternatively, you can add yourself to group 'lp' and logout/login.""" % (self.h
       right = _mm_2_SU(self.hardware['width_mm'] if 'width_mm' in self.hardware else mediawidth)
       self.set_boundary(0, 0, bottom, right)
 
-  def setup(self, media=132, speed=None, pressure=None, toolholder=None, pen=None, cuttingmat=None, sharpencorners=False, sharpencorners_start=0.1, sharpencorners_end=0.1, autoblade=False, depth=None, sw_clipping=True, clip_fuzz=0.05, trackenhancing=False, bladediameter=0.9, landscape=False, leftaligned=None, mediawidth=210.0, mediaheight=297.0):
+  def setup(self, media=132, speed=None, pressure=None,
+            toolholder=None, pen=None, cuttingmat=None, sharpencorners=False,
+            sharpencorners_start=0.1, sharpencorners_end=0.1, autoblade=False,
+            depth=None, sw_clipping=True, clip_fuzz=0.05, trackenhancing=False,
+            bladediameter=0.9, landscape=False, leftaligned=None,
+            mediawidth=210.0, mediaheight=297.0):
     """Setup the Silhouette Device
 
     Parameters
@@ -920,13 +975,18 @@ Alternatively, you can add yourself to group 'lp' and logout/login.""" % (self.h
           if depth is None:    depth = i[3]
           break
 
-    tool = SilhouetteCameoTool(toolholder)
+    if self.product_id() == PRODUCT_ID_SILHOUETTE_PORTRAIT3:
+      tool = SilhouettePortraitTool(toolholder)
+    else:
+      tool = SilhouetteCameoTool(toolholder)
 
     if toolholder is None:
       toolholder = 1
 
     if self.product_id() in PRODUCT_LINE_CAMEO3_ON:
-      self.send_command(tool.select())
+      toolsel = tool.select()
+      if toolsel is not None:
+        self.send_command(toolsel)
 
     print("toolholder: %d" % toolholder, file=self.log)
 
@@ -1320,6 +1380,7 @@ Alternatively, you can add yourself to group 'lp' and logout/login.""" % (self.h
         self.send_command(self.automatic_regmark_test_mm_cmd(reglength, regwidth, regoriginy - 10, regoriginx - 10))
       else:
         # manual regmark
+        self.send_command(self.move_mm_cmd(self, regoriginy, regoriginx))
         self.send_command(self.manual_regmark_mm_cmd(reglength, regwidth))
 
       #while True:

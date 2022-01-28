@@ -57,7 +57,7 @@ Install requirements
 
 Install inkscape-silhouette
 * https://github.com/fablabnbg/inkscape-silhouette/releases
-  Scroll down to Downloads and click on the *.deb file.
+  Scroll down to Assets and click on the *.deb.zip file.
 
 ### Other Debian based Linux
 

@@ -14,6 +14,7 @@
         <item value="cameo_12x24">Cameo 12x24</item>
         <item value="cameo_plus_15x15">Cameo Plus 15x15</item>
         <item value="cameo_pro_24x24">Cameo Pro 24x24</item>
+        <item value="portrait_8x12">Portrait 8x12</item>
         <item value="no_mat">None</item>
       </param>
       <param name="toolholder" type="enum" _gui-text="Tool Holder:">
@@ -137,6 +138,7 @@ Minimal Traveling (no reverse): Like fully optimized but respect original orient
 	<item value="DETECT">-- as detected --</item>
 	<item value="Silhouette Portrait">Silhouette Portrait</item>
 	<item value="Silhouette Portrait2">Silhouette Portrait 2</item>
+	<item value="Silhouette Portrait3">Silhouette Portrait 3</item>
 	<item value="Silhouette Cameo">Silhouette Cameo</item>
 	<item value="Silhouette Cameo2">Silhouette Cameo 2</item>
 	<item value="Silhouette Cameo3">Silhouette Cameo 3</item>
