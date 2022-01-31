@@ -173,7 +173,7 @@ RESP_FAIL     = b'-1'
 RESP_DECODING = {
   RESP_READY:    'ready',
   RESP_MOVING:   'moving',
-  RESP_UNLOADED: 'unloaded'
+  RESP_UNLOADED: 'unloaded',
   RESP_FAIL:     'fail'
 }
 
@@ -336,7 +336,7 @@ class SilhouetteCameoTool:
       "FF%d,%d,%d" % (start, end, self.toolholder)]
 
 class SilhouettePortraitTool:
-  def __init__(self, toolholder=1):
+  def __init__(self):
     pass
 
   def select(self):
@@ -362,9 +362,9 @@ class SilhouettePortraitTool:
   def lift(self, lift):
     """ set lift command """
     if lift:
-      return "FE1,0" % self.toolholder
+      return "FE1,0"
     else:
-      return "FE0,0" % self.toolholder
+      return "FE0,0"
 
   def sharpen_corners(self, start, end):
     return [
@@ -978,7 +978,7 @@ Alternatively, you can add yourself to group 'lp' and logout/login.""" % (self.h
           break
 
     if self.product_id() == PRODUCT_ID_SILHOUETTE_PORTRAIT3:
-      tool = SilhouettePortraitTool(toolholder)
+      tool = SilhouettePortraitTool()
     else:
       tool = SilhouetteCameoTool(toolholder)
 
@@ -1380,12 +1380,18 @@ Alternatively, you can add yourself to group 'lp' and logout/login.""" % (self.h
 
       if regsearch:
         # automatic regmark test
-        # add a search range of 10mm
-        # On Portrait3, y, x are always 118, which is the size of the square
-        self.send_command(self.automatic_regmark_test_mm_cmd(reglength, regwidth, 5.9, 5.9))
+        if self.product_id() == PRODUCT_ID_SILHOUETTE_PORTRAIT3:
+          # On Portrait3, y, x are always 118, which is the size of the regmark square
+          self.send_command(self.automatic_regmark_test_mm_cmd(reglength, regwidth, 5.9, 5.9))
+        else:
+          # add a search range of 10mm
+          self.send_command(self.automatic_regmark_test_mm_cmd(reglength, regwidth, regoriginy-10, regoriginx-10))
       else:
         # manual regmark
-        self.send_command(self.move_mm_cmd(self, regoriginy, regoriginx))
+        # The procedure is to use manual controls to position the tool over the square, then
+        # send command .TB23'.
+        # Ideally we would pop-up a window with 4 direction buttons
+        #self.send_command(self.move_mm_cmd(self, regoriginy, regoriginx))
         self.send_command(self.manual_regmark_mm_cmd(reglength, regwidth))
 
       ## SS sends another TB99
@@ -1400,7 +1406,7 @@ Alternatively, you can add yourself to group 'lp' and logout/login.""" % (self.h
 
       if self.product_id() == PRODUCT_ID_SILHOUETTE_PORTRAIT3:
         while True:
-          state = self.status(timeout=500)
+          state = self.status()
           if state != 'moving':
             break
           time.sleep(1)
@@ -1445,6 +1451,13 @@ Alternatively, you can add yourself to group 'lp' and logout/login.""" % (self.h
         "L0",
         "FE0,0",
         "FF0,0,0"])
+    elif self.product_id() == PRODUCT_ID_SILHOUETTE_PORTRAIT3:
+      self.send_command([
+        self.upper_left_mm_cmd(0, 0),
+        self.lower_right_mm_cmd(height, width))
+      self.send_command([
+        self.tool.lift(False),
+        
 
     bbox['clip'] = {'urx':width, 'ury':top, 'llx':left, 'lly':height}
     bbox['only'] = bboxonly

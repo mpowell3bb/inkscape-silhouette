@@ -47,6 +47,10 @@ the (G) in comments if it was there, to preserve the information.
 <pre>
 Command                              Name                   Comments
 ------------------------             -------------------    ----------------------------------------------------
+^[^@n                                Button Event           Observed in Portrait 3 capture. Tells device the state
+                                         of (virtual) up/down/left/right buttons.
+                                         Seems to be a bit mask of the four buttons, a 1 indicates button pressed.
+                                         Need to experiment to determine bit definitions.
 ^[^D                                 Initialize Device
 ^[^E                                 Query Status
 ^[^K                                 Query Firmware         Not sure how this differs from the FG command below,

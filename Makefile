@@ -48,6 +48,22 @@ install-local:
 	install -m 755 -t $(DESTLOCAL) *silhouette*.py
 	install -m 644 -t $(DESTLOCAL) *.inx
 
+link-local:
+	mkdir -p $(DESTLOCAL)
+	rm -fr $(DESTLOCAL)/silhouette
+	rm -f $(DESTLOCAL)/sendto_silhouette.{inx,py}
+	rm -f $(DESTLOCAL)/silhouette_multi.{inx,py}
+	ln -s $(CURDIR)/silhouette $(DESTLOCAL)
+	ln -s $(CURDIR)/sendto_silhouette.inx $(DESTLOCAL)
+	ln -s $(CURDIR)/sendto_silhouette.py  $(DESTLOCAL)
+	ln -s $(CURDIR)/silhouette_multi.inx  $(DESTLOCAL)
+	ln -s $(CURDIR)/silhouette_multi.py   $(DESTLOCAL)
+
+uninstall-local:
+	rm -fr $(DESTLOCAL)/silhouette
+	rm -f $(DESTLOCAL)/sendto_silhouette.{inx,py}
+	rm -f $(DESTLOCAL)/silhouette_multi.{inx,py}
+
 tar_dist_classic: clean
 	name=$(DISTNAME)-$(VERS); echo "$$name"; echo; \
 	tar jcvf $$name.tar.bz2 $(EXCL) --transform="s,^,$$name/," $(ALL)
