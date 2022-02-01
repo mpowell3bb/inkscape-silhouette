@@ -155,7 +155,7 @@ try:
 except:
     inkex.localize()    # inkscape 0.9x
 
-from silhouette.Graphtec import SilhouetteCameo, CAMEO_MATS
+import silhouette
 from silhouette.Strategy import MatFree
 from silhouette.convert2dashes import splitPath
 import silhouette.StrategyMinTraveling
@@ -335,7 +335,7 @@ class SendtoSilhouette(inkex.Effect):
                 dest = "bladediameter", type = float, default = 0.9,
                 help="[0..2.3] diameter of the used blade [mm], default = 0.9")
         self.arg_parser.add_argument("-C", "--cuttingmat",
-                choices=list(CAMEO_MATS.keys()), dest = "cuttingmat",
+                choices=list(silhouette.SILHOUETTE_MATS.keys()), dest = "cuttingmat",
                 default = "cameo_12x12", help="Use cutting mat")
         self.arg_parser.add_argument("-D", "--depth",
                 dest = "depth", type = int, default = -1,
@@ -1158,11 +1158,12 @@ Each of the following `level` values encompasses all of the later ones:
             command_file = open(self.options.cmdfile, mode)
 
         try:
-            dev = SilhouetteCameo(log=self.log, progress_cb=write_progress,
-                                  cmdfile=command_file,
-                                  inc_queries=self.options.inc_queries,
-                                  dry_run=self.options.dry_run,
-                                  force_hardware=self.options.force_hardware)
+            dev = silhouette.open_cutter(
+                log=self.log, progress_cb=write_progress,
+                cmdfile=command_file,
+                inc_queries=self.options.inc_queries,
+                dry_run=self.options.dry_run,
+                force_hardware=self.options.force_hardware)
         except Exception as e:
             self.report(e, 'error')
             return
@@ -1188,7 +1189,7 @@ Each of the following `level` values encompasses all of the later ones:
         if self.options.toolholder is not None:
             self.options.toolholder = int(self.options.toolholder)
         self.pen=None
-        self.autoblade=False
+        self.autoblade=None
         if self.options.tool == "pen":
             self.pen=True
         if self.options.tool == "cut":

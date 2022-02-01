@@ -51,8 +51,10 @@ install-local:
 link-local:
 	mkdir -p $(DESTLOCAL)
 	rm -fr $(DESTLOCAL)/silhouette
-	rm -f $(DESTLOCAL)/sendto_silhouette.{inx,py}
-	rm -f $(DESTLOCAL)/silhouette_multi.{inx,py}
+	rm -f $(DESTLOCAL)/sendto_silhouette.inx
+	rm -f $(DESTLOCAL)/sendto_silhouette.py
+	rm -f $(DESTLOCAL)/silhouette_multi.inx
+	rm -f $(DESTLOCAL)/silhouette_multi.py
 	ln -s $(CURDIR)/silhouette $(DESTLOCAL)
 	ln -s $(CURDIR)/sendto_silhouette.inx $(DESTLOCAL)
 	ln -s $(CURDIR)/sendto_silhouette.py  $(DESTLOCAL)
@@ -61,8 +63,10 @@ link-local:
 
 uninstall-local:
 	rm -fr $(DESTLOCAL)/silhouette
-	rm -f $(DESTLOCAL)/sendto_silhouette.{inx,py}
-	rm -f $(DESTLOCAL)/silhouette_multi.{inx,py}
+	rm -f $(DESTLOCAL)/sendto_silhouette.inx
+	rm -f $(DESTLOCAL)/sendto_silhouette.py
+	rm -f $(DESTLOCAL)/silhouette_multi.inx
+	rm -f $(DESTLOCAL)/silhouette_multi.py
 
 tar_dist_classic: clean
 	name=$(DISTNAME)-$(VERS); echo "$$name"; echo; \

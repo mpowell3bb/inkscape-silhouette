@@ -57,7 +57,6 @@ class GenericCmd:
 
     def report(self, msg):
         args = msg[len(self.cmd):]
-        dump(args)
         msgstr = binascii.b2a_qp(msg.encode('iso-8859-1')).decode()
         return '{:20s} {} {} {}'.format(msgstr, self.name, self.sig, args)
 
@@ -103,7 +102,7 @@ COMMAND_TABLE = [
     GenericCmd('\x1b\x15', '',     'Query Tool Setup',    None),
     GenericCmd('\x1b\x1b', '',     'Escape',              None),
     GenericCmd('!',        'n',    'Speed',               None),
-    GenericCmd('BD',       '',     'BDn, unknown, data follows', None),
+    CutCmd    ('BD',       '',     'BDn, unknown, data follows', None),
     CutCmd    ('BE',       'n',    'BEn, Tool down? data follows', None),
     GenericCmd('B',        'l',    'Line Scale',          None),
     GenericCmd('FA',       '',     'Calibration Query',   None),
@@ -260,5 +259,5 @@ if __name__ == '__main__':
         print('"{}" does not exist'.format(file_name), file=sys.stdout)
         sys.exit(-1)
 
-    process_pcap(file_name, 1)
+    process_pcap(file_name, 0)
     sys.exit(0)

@@ -148,6 +148,7 @@ SOn                                  Set Origin             (G)  Apparently sets
                                          coordinate system origin going forward; unclear what n means
 SPc                                  Select Point Mark      (G)[t]  Unclear what this does
 T n                                  Buzzer                 (G)  Unclear what n means
+TB0                                  Unknown                Seen from Silhouette Studio on Portrait3 at the end of job.
 TB50,n                               Set Orientation        n=0 portrait, n=1 landscape; seems redundant with FN, but
                                          Silhouette Studio issues both, so we do too; but judging from the following
                                          commands, maybe has to do with regmarks orientation
