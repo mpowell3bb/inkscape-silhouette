@@ -1,0 +1,13 @@
+setup():
+  initialize()
+    send_escape(EOT)
+    get fw ver:  'FG'
+    ---------------- missing 'TI'
+    'TB71'
+    'FA'
+    ---------------- missing 'TI'
+  set_cutting_mat()
+    'TGx'
+    'FN0'
+    'TB5,0'
+    '\xxZxxx'   -------- NOT sent by SS at this point

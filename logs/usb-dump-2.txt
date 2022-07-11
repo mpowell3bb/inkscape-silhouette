@@ -1,0 +1,267 @@
+Opening logs/usb-dump-2.pcapng.gz...
+   14 =1B=05               Query Status                 "2"
+   17 =1B=05               Query Status                 "2"
+   21 =1B=05               Query Status                 "2"
+   25 FG                   Query Firmware               "Portrait 3 V1.04    "
+   29 TI                   Query Title                  ""
+   33 FG                   Query Firmware               "Portrait 3 V1.04    "
+   37 TI                   Query Title                  ""
+   41 =1B=05               Query Status                 "2"
+   45 =1B=05               Query Status                 "2"
+   49 =1B=05               Query Status                 "2"
+   53 TB71                 Calibration Query            "    0,    0"
+   57 FA                   Calibration Query            "    0,    0"
+   61 TI                   Query Title                  ""
+   66 =1B=11               Query Firmware               "Portrait 3 V1.04    "
+   70 =1B=05               Query Status                 "0"
+   74 =1B=15               Query Tool Setup             " 2, 0"
+   78 =1B=05               Query Status                 "0"
+   82 =1B=05               Query Status                 "0"
+   86 =1B=05               Query Status                 "0"
+   90 =1B=15               Query Tool Setup             " 2, 0"
+   94 =1B=05               Query Status                 "0"
+   98 =1B=05               Query Status                 "0"
+  102 =1B=05               Query Status                 "0"
+  106 =1B=15               Query Tool Setup             " 2, 0"
+  110 =1B=05               Query Status                 "0"
+  114 =1B=05               Query Status                 "0"
+  118 =1B=05               Query Status                 "0"
+  121 =1B=15               Query Tool Setup             " 2, 0"
+  126 =1B=05               Query Status                 "0"
+  130 =1B=05               Query Status                 "0"
+  134 =1B=15               Query Tool Setup             " 2, 0"
+  138 =1B=05               Query Status                 "0"
+  142 =1B=05               Query Status                 "0"
+  146 =1B=15               Query Tool Setup             " 2, 0"
+  150 =1B=05               Query Status                 "0"
+  154 =1B=05               Query Status                 "0"
+  158 =1B=05               Query Status                 "0"
+  162 =1B=15               Query Tool Setup             " 2, 0"
+  166 =1B=05               Query Status                 "0"
+  170 =1B=05               Query Status                 "0"
+  174 =1B=05               Query Status                 "0"
+  178 =1B=15               Query Tool Setup             " 2, 0"
+  182 =1B=05               Query Status                 "0"
+  186 =1B=05               Query Status                 "0"
+  190 =1B=05               Query Status                 "0"
+  194 =1B=05               Query Status                 "0"
+  197 =1B=15               Query Tool Setup             " 2, 0"
+  202 =1B=05               Query Status                 "0"
+  206 =1B=05               Query Status                 "0"
+  210 =1B=05               Query Status                 "0"
+  213 =1B=15               Query Tool Setup             " 2, 0"
+  218 =1B=05               Query Status                 "0"
+  222 =1B=05               Query Status                 "0"
+  226 =1B=05               Query Status                 "0"
+  230 =1B=15               Query Tool Setup             " 2, 0"
+  234 =1B=05               Query Status                 "0"
+  238 =1B=05               Query Status                 "0"
+  242 =1B=05               Query Status                 "0"
+  246 =1B=15               Query Tool Setup             " 2, 0"
+  250 =1B=05               Query Status                 "0"
+  254 =1B=05               Query Status                 "0"
+  258 =1B=05               Query Status                 "0"
+  262 =1B=15               Query Tool Setup             " 2, 0"
+  266 =1B=05               Query Status                 "0"
+  270 =1B=05               Query Status                 "0"
+  274 =1B=05               Query Status                 "0"
+  278 =1B=05               Query Status                 "0"
+  281 =1B=15               Query Tool Setup             " 2, 0"
+  286 =1B=05               Query Status                 "0"
+  290 =1B=05               Query Status                 "0"
+  294 =1B=05               Query Status                 "0"
+  297 =1B=15               Query Tool Setup             " 2, 0"
+  301 TG0                  Set Cutting Mat n 0
+      FN0                  Set Orientation n 0
+      TB50,0               Set Orientation n 0
+      TB99                 Use Regmarks  
+  304 TB52,2               Set Regmark Type n 2
+      TB51,400             Set Regmark Length l 400
+      TB53,10              Set Regmark Width n 10
+      TB55,1               ?Do Registration? n 1
+      TB123,5120,3600,118,118 Reg Mark Auto h,w,y,x 5120,3600,118,118
+      TB99                 Use Regmarks  
+  306 =1B=05               Query Status                 "1"
+  310 =1B=05               Query Status                 "1"
+  314 =1B=05               Query Status                 "1"
+  318 =1B=05               Query Status                 "1"
+  322 =1B=05               Query Status                 "1"
+  326 =1B=05               Query Status                 "1"
+  330 =1B=05               Query Status                 "1"
+  334 =1B=05               Query Status                 "1"
+  338 =1B=05               Query Status                 "1"
+  342 =1B=05               Query Status                 "1"
+  346 =1B=05               Query Status                 "1"
+  350 =1B=05               Query Status                 "1"
+  354 =1B=05               Query Status                 "1"
+  358 =1B=05               Query Status                 "1"
+  362 =1B=05               Query Status                 "1"
+                                                        "    0"
+  368 =1B=05               Query Status                 "0"
+  372 =1B=05               Query Status                 "0"
+  375 \0,0                 Write Lower Left x,y 0,0
+      Z5120,3600           Write Upper Right x,y 5120,3600
+      FX10                 Set Downward Force n 10
+  378 !5                   Speed n 5
+      FC0                  Cutter Offset p,q[,n] 0
+      FE0,0                Lift Control l[,n] 0,0
+      FF1,0,0              Sharpen Corners s,e,n 1,0,0
+      FF1,1,0              Sharpen Corners s,e,n 1,1,0
+      FX10                 Set Downward Force n 10
+  380 FC18                 Cutter Offset p,q[,n] 18
+      TF1,1                Set Tool Depth d,n 1,1
+  382 =1B=05               Query Status                 "1"
+  385 =1B=05               Query Status                 "1"
+  390 =1B=05               Query Status                 "1"
+  394 =1B=05               Query Status                 "1"
+  398 =1B=05               Query Status                 "1"
+  402 =1B=05               Query Status                 "0"
+  406 M375,1359            Move Abs x,y 375,1359
+      BE1 <data>           BEn, Tool down? data follows n 1
+      8d 87 8f 86 91 86 93 87 95 87 96 89 97 8a 99 8b 99 8d 9a 8f 9a 91 99 93 99 95 97 96 96 97 95 99 93 99 91 9a 8f 9a 8d 99 8b 99 8a 97 89 96 87 95 87 93 86 91 86 8f 87 8d 87 8b 89 8a 8a 89 8b 87 8d 87 8f 86 91 86 93 87
+      M573,960             Move Abs x,y 573,960
+      BE1 <data>           BEn, Tool down? data follows n 1
+      8e 86 8f 86 91 82 94 83 97 84 99 86 9a 87 9c 8a 9d 8b 9e 8f 9e 91 9d 95 9c 96 9a 99 99 9a 96 9c 95 9d 91 9e 8f 9e 8b 9d 8a 9c 87 9a 86 99 84 96 83 95 82 91 82 8f 83 8b 84 8a 86 87 87 86 89 84 8c 83 8f 82 91 86 92 86
+      M893,960             Move Abs x,y 893,960
+      BE1 <data>           BEn, Tool down? data follows n 1
+      8e 86 8f 86 91 82 94 83 97 84 99 86 9a 87 9c 8a 9d 8b 9e 8f 9e 91 9d 95 9c 96 9a 99 99 9a 96 9c 95 9d 91 9e 8f 9e 8b 9d 8a 9c 87 9a 86 99 84 96 83 95 82 91 82 8f 83 8b 84 8a 86 87 87 86 89 84 8c 83 8f 82 91 86 92 86
+      M1213,960            Move Abs x,y 1213,960
+      BE1 <data>           BEn, Tool down? data follows n 1
+      8e 86 8f 86 91 82 94 83 97 84 98 86 9b 87 9c 8a 9d 8b 9e 8f 9e 91 9d 95 9c 96 9a 99 99 9a 96 9c 95 9d 91 9e 8f 9e 8b 9d 8a 9c 87 9a 86 99 84 96 83 95 82 91 82 8f 83 8b 84 8a 85 87 88 86 89 84 8c 83 8f 82 91 86 92 86
+  408 =1B=05               Query Status                 "1"
+  411 M1533,960            Move Abs x,y 1533,960
+      BE1 <data>           BEn, Tool down? data follows n 1
+      8e 86 8f 86 91 82 94 83 97 84 98 86 9b 87 9c 8a 9d 8b 9e 8f 9e 91 9d 95 9c 96 9a 99 99 9a 96 9c 95 9d 91 9e 8f 9e 8b 9d 8a 9c 87 9a 86 99 84 96 83 95 82 91 82 8f 83 8b 84 8a 85 87 88 86 89 84 8c 83 8f 82 91 86 92 86
+      M1853,960            Move Abs x,y 1853,960
+      BE1 <data>           BEn, Tool down? data follows n 1
+      8e 86 8f 86 91 82 94 83 97 84 98 86 9b 87 9c 8a 9d 8b 9e 8f 9e 91 9d 95 9c 96 9a 99 99 9a 96 9c 95 9d 91 9e 8f 9e 8b 9d 8a 9c 87 9a 86 99 84 96 83 95 82 91 82 8f 83 8b 84 8a 85 87 88 86 89 84 8c 83 8f 82 91 86 92 86
+      M1900,1673           Move Abs x,y 1900,1673
+      BE1 <data>           BEn, Tool down? data follows n 1
+      9a 8e 9a 8f 9e 91 9d 95 9c 96 9a 99 99 9a 96 9c 95 9d 91 9e 8f 9e 8b 9d 8a 9c 87 9a 86 99 84 96 83 95 82 91 82 8f 83 8b 84 8a 85 87 88 86 89 84 8c 83 8f 82 91 82 94 83 97 84 98 86 9b 87 9c 8a 9d 8b 9e 8f 9a 91 9a 92
+      M1667,1720           Move Abs x,y 1667,1720
+      BE1 <data>           BEn, Tool down? data follows n 1
+      92 9a 91 9a 8f 9e 8b 9d 8a 9c 87 9a 86 99 84 96 83 95 82 91 82 8f 83 8b 84 8a 86 87 87 86 89 84 8c 83 8f 82 91 82 94 83 97 84 99 86 9a 87 9c 8a 9d 8b 9e 8f 9e 91 9d 95 9c 96 9a 99 99 9a 96 9c 95 9d 91 9e 8f 9a 8e 9a
+      M1347,1720           Move Abs x,y 1347,1720
+      BE1 <data>           BEn, Tool down? data follows n 1
+      92 9a 91 9a 8f 9e 8b 9d 8a 9c 87 9a 86 99 84 96 83 95 82 91 82 8f 83 8b 84 8a 86 87 87 86 89 84 8c 83 8f 82 91 82 94 83 97 84 99 86 9a 87 9c 8a 9d 8b 9e 8f 9e 91 9d 95 9c 96 9a 99 99 9a 96 9c 95 9d 91 9e 8f 9a 8e 9a
+  414 M1027,1720           Move Abs x,y 1027,1720
+      BE1 <data>           BEn, Tool down? data follows n 1
+      92 9a 91 9a 8f 9e 8b 9d 8a 9c 87 9a 86 99 84 96 83 95 82 91 82 8f 83 8b 84 8a 86 87 87 86 89 84 8c 83 8f 82 91 82 94 83 97 84 99 86 9a 87 9c 8a 9d 8b 9e 8f 9e 91 9d 95 9c 96 9a 99 99 9a 96 9c 95 9d 91 9e 8f 9a 8e 9a
+      M907,2240            Move Abs x,y 907,2240
+      BE1 <data>           BEn, Tool down? data follows n 1
+      92 9a 91 9a 8f 9e 8b 9d 8a 9c 87 9a 86 99 84 96 83 95 82 91 82 8f 83 8b 84 8a 86 87 87 86 89 84 8c 83 8f 82 91 82 94 83 97 84 99 86 9a 87 9c 8a 9d 8b 9e 8f 9e 91 9d 95 9c 96 9a 99 99 9a 96 9c 95 9d 91 9e 8f 9a 8e 9a
+      M707,1720            Move Abs x,y 707,1720
+      BE1 <data>           BEn, Tool down? data follows n 1
+      92 9a 91 9a 8f 9e 8b 9d 8a 9c 87 9a 86 99 84 96 83 95 82 91 82 8f 83 8b 84 8a 86 87 87 86 89 84 8c 83 8f 82 91 82 94 83 97 84 99 86 9a 87 9c 8a 9d 8b 9e 8f 9e 91 9d 95 9c 96 9a 99 99 9a 96 9c 95 9d 91 9e 8f 9a 8e 9a
+      M467,2121            Move Abs x,y 467,2121
+      BE1 <data>           BEn, Tool down? data follows n 1
+      93 99 91 9a 8f 9a 8d 99 8b 99 8a 97 89 96 87 95 87 93 86 91 86 8f 87 8d 87 8b 89 8a 8a 89 8b 87 8d 87 8f 86 91 86 93 87 95 87 96 89 97 8a 99 8b 99 8d 9a 8f 9a 91 99 93 99 95 97 96 96 97 95 99 93 99 91 9a 8f 9a 8d 99
+      M1818,2600           Move Abs x,y 1818,2600
+      BE1 <data>           BEn, Tool down? data follows n 1
+      8e 86 8f 86 91 83 94 84 96 85 98 86 9a 88 9b 8a 9c 8c 9d 8f 9d 91 9c 94 9b 96 9a 98 98 9a 96 9b 94 9c 91 9d 8f 9d 8c 9c 8a 9b 88 9a 86 98 85 96 84 94 83 91 83 8f 84 8c 85 8a 86 88 88 86 8a 85 8c 84 8f 83 91 86 92 86
+  416 M2102,2920           Move Abs x,y 2102,2920
+      BE1 <data>           BEn, Tool down? data follows n 1
+      a4 90 90 90 a7 8a a4 8a 9f 88 96 8c 95 8b 97 89 96 88 94 88 95 87 93 87 92 87 92 86 90 87 90 90
+      BD3=B6M=9EN=90       BDn, unknown, data follows  3¶MN
+      BE1 <data>           BEn, Tool down? data follows n 1
+      90 90 8a 79 8a 7c 88 81 8c 8a 8b 8b 89 89 88 8b 88 8b 88 8b 87 8d 86 8e 87 8e 86 90 90 90
+      BD3=D0=82#H=90       BDn, unknown, data follows  3Ð#H
+      BE1 <data>           BEn, Tool down? data follows n 1
+      90 90 79 96 7c 96 81 98 8a 94 8b 95 89 97 8a 98 8c 98 8b 99 8d 99 8e 99 8e 9a 90 99 90 90
+      BD3&Q=8B=DC=90       BDn, unknown, data follows  3&QÜ
+      BE1 <data>           BEn, Tool down? data follows n 1
+      90 90 96 a7 96 a4 98 9f 94 96 95 95 97 97 98 95 98 95 98 95 99 93 9a 92 99 92 9a 90 90 90
+      BD3=EC=FB%=E3=90     BDn, unknown, data follows  3ìû%ã
+      BE1 <data>           BEn, Tool down? data follows n 1
+      90 90 a3 8b
+  418 =1B=05               Query Status                 "1"
+  421 =1B=05               Query Status                 "1"
+  426 =1B=05               Query Status                 "1"
+  430 =1B=05               Query Status                 "1"
+  434 =1B=05               Query Status                 "1"
+  438 =1B=05               Query Status                 "1"
+  442 =1B=05               Query Status                 "1"
+  446 =1B=05               Query Status                 "1"
+  450 =1B=05               Query Status                 "1"
+  454 =1B=05               Query Status                 "1"
+  458 =1B=05               Query Status                 "1"
+  462 =1B=05               Query Status                 "1"
+  466 =1B=05               Query Status                 "1"
+  470 =1B=05               Query Status                 "1"
+  474 =1B=05               Query Status                 "1"
+  478 =1B=05               Query Status                 "1"
+  482 =1B=05               Query Status                 "1"
+  486 =1B=05               Query Status                 "1"
+  490 =1B=05               Query Status                 "1"
+  494 =1B=05               Query Status                 "1"
+  498 =1B=05               Query Status                 "1"
+  502 =1B=05               Query Status                 "1"
+  506 =1B=05               Query Status                 "1"
+  510 =1B=05               Query Status                 "1"
+  514 =1B=05               Query Status                 "1"
+  518 =1B=05               Query Status                 "1"
+  522 =1B=05               Query Status                 "1"
+  526 =1B=05               Query Status                 "1"
+  530 =1B=05               Query Status                 "1"
+  534 =1B=05               Query Status                 "1"
+  538 =1B=05               Query Status                 "1"
+  542 =1B=05               Query Status                 "1"
+  546 =1B=05               Query Status                 "1"
+  550 =1B=05               Query Status                 "1"
+  554 =1B=05               Query Status                 "1"
+  558 =1B=05               Query Status                 "1"
+  562 =1B=05               Query Status                 "1"
+  566 =1B=05               Query Status                 "1"
+  570 =1B=05               Query Status                 "1"
+  574 =1B=05               Query Status                 "1"
+  578 =1B=05               Query Status                 "1"
+  582 =1B=05               Query Status                 "1"
+  586 =1B=05               Query Status                 "1"
+  590 =1B=05               Query Status                 "1"
+  594 =1B=05               Query Status                 "1"
+  598 =1B=05               Query Status                 "1"
+  602 =1B=05               Query Status                 "1"
+  606 =1B=05               Query Status                 "1"
+  610 =1B=05               Query Status                 "1"
+  614 =1B=05               Query Status                 "1"
+  618 =1B=05               Query Status                 "1"
+  622 =1B=05               Query Status                 "1"
+  626 =1B=05               Query Status                 "1"
+  630 =1B=05               Query Status                 "1"
+  634 =1B=05               Query Status                 "1"
+  638 =1B=05               Query Status                 "1"
+  642 =1B=05               Query Status                 "0"
+  646 Unknown command: TB0
+  648 =1B=05               Query Status                 "0"
+  652 =1B=05               Query Status                 "0"
+  655 L0                   Line Type p 0
+  658 =1B=05               Query Status                 "0"
+  662 =1B=05               Query Status                 "0"
+  665 \0,0                 Write Lower Left x,y 0,0
+      M0,0                 Move Abs x,y 0,0
+      FN0                  Set Orientation n 0
+      TB50,0               Set Orientation n 0
+  668 =1B=05               Query Status                 "1"
+  672 =1B=05               Query Status                 "1"
+  676 =1B=05               Query Status                 "1"
+  680 =1B=05               Query Status                 "1"
+  684 =1B=05               Query Status                 "1"
+  688 =1B=05               Query Status                 "1"
+  692 =1B=05               Query Status                 "1"
+  696 =1B=05               Query Status                 "1"
+  700 =1B=05               Query Status                 "1"
+  704 =1B=05               Query Status                 "1"
+  708 =1B=05               Query Status                 "0"
+  711 =1B=15               Query Tool Setup             " 2, 0"
+  716 =1B=05               Query Status                 "0"
+  719 =1B=15               Query Tool Setup             " 2, 0"
+  724 =1B=05               Query Status                 "0"
+  728 =1B=05               Query Status                 "0"
+  732 =1B=15               Query Tool Setup             " 2, 0"
+  736 =1B=05               Query Status                 "0"
+  740 =1B=05               Query Status                 "0"
+  744 =1B=05               Query Status                 "0"
+  748 =1B=15               Query Tool Setup             " 2, 0"
+  752 =1B=05               Query Status                 "0"
+  756 =1B=05               Query Status                 "0"
+  760 =1B=05               Query Status                 "0"
